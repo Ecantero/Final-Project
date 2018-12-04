@@ -1,0 +1,38 @@
+extends layout
+
+block content
+  form(id='form', method='post', action='/create')
+    label(for='name') UserName: 
+    input(type='text', name='username')
+    br
+    label(for='age') Age: 
+    input(type='text', name='age')
+    br
+    label(for='age') Email: 
+    input(type='text', name='email')
+    br
+    label(for='age') Password: 
+    input(type='text', name='password')
+    br
+    label(for='Q1') ?: 
+    select(name='Q1')
+      option(value="") 
+      option(value="") 
+      option(value="") 
+      option(value="") 
+    br
+    label(for='Q2') ?: 
+    select(name='Q2')
+      option(value="") 
+      option(value="") 
+      option(value="") 
+      option(value="") 
+    br
+    label(for='Q3') ?: 
+    select(name='Q3')
+      option(value="") 
+      option(value="") 
+      option(value="") 
+      option(value="") 
+    br
+    input(type='submit', value='Add Person')
