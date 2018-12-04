@@ -25,4 +25,6 @@ app.post('/create', urlencodedParser, route.createPerson);
 app.post('/edit/:id', urlencodedParser, route.editPerson);
 app.get('/delete/:id', route.delete);
 
-app.listen(3000);
+app.listen(3000, function(){
+  console.log("Listening On Port", 3000)
+});
