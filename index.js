@@ -2,11 +2,26 @@ var express = require('express'),
   pug = require('pug'),
   path = require('path'),
   route = require('./routes/routes.js'),
-  bodyParser = require('body-parser');
+  bodyParser = require('body-parser'),
+  cookieParser = require('cookie-parser');
 
 
 var app = express();
 
+app.get('/', function (req, res) {
+  if(req.cookies.beenHereBefore === 'yes') {
+      res.send('You have been here before');
+  } else {
+      res.cookie('beenHereBefore', 'yes');
+      res.send('This is your first time');
+  }
+  
+});
+
+app.get('/clear', function (req, res) {
+  res.clearCookie('beenHereBefore');
+  res.redirect('/');
+});
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
