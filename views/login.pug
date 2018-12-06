@@ -1,7 +1,7 @@
 extends layout
 
 block content
-    h3 Name Entry
+  h3 Name Entry
     form(id='form', method='post', action='/')
       label UserName:
       br
@@ -12,3 +12,6 @@ block content
       input(type='password', name='pass')
       br
       input(type='submit', value='submit')
+  p
+  #menu
+    a(href='/create') Create a new account
