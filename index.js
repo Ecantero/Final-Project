@@ -3,6 +3,7 @@ var express = require('express'),
   path = require('path'),
   route = require('./routes/routes.js'),
   bodyParser = require('body-parser'),
+  mongoose = require("mongoose"),
   cookieParser = require('cookie-parser');
 
 

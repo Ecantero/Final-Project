@@ -38,10 +38,10 @@ exports.create = function (req, res) {
 
 exports.createPerson = function (req, res) {
   var person = new Person({
-    name: req.body.name,
+    username: req.body.username,
     age: req.body.age,
-    species: req.body.species,
-    color: req.body.color
+    email: req.body.email,
+    password: req.body.password
   });
   person.save(function (err, person) {
     if (err) return console.error(err);
