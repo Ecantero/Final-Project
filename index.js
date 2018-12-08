@@ -9,20 +9,20 @@ var express = require('express'),
 
 var app = express();
 
-app.get('/', function (req, res) {
-  if(req.cookies.beenHereBefore === 'yes') {
-      res.send('You have been here before');
-  } else {
-      res.cookie('beenHereBefore', 'yes');
-      res.send('This is your first time');
-  }
+// app.get('/', function (req, res) {
+//   if(req.cookies.beenHereBefore === 'yes') {
+//       res.send('You have been here before');
+//   } else {
+//       res.cookie('beenHereBefore', 'yes');
+//       res.send('This is your first time');
+//   }
   
-});
+// });
 
-app.get('/logout', function (req, res) {
-  res.clearCookie('beenHereBefore');
-  res.redirect('/');
-});
+// app.get('/clear', function (req, res) {
+//   res.clearCookie('beenHereBefore');
+//   res.redirect('/');
+// });
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');

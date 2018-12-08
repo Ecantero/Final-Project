@@ -33,6 +33,10 @@ exports.index = function (req, res) {
   });
 };
 
+exports.home = function (req, res) {
+  res.render('home');
+};
+
 exports.create = function (req, res) {
   res.render('create', {
       title: 'Add Person'

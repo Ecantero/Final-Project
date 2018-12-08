@@ -3,33 +3,33 @@ extends layout
 block content
   form(id='form', method='post', action='/create')
     label(for='name') UserName: 
-    input(type='text', name='username')
+    input(type='text', name='username', required)
     br
     label(for='age') Age: 
-    input(type='text', name='age')
+    input(type='text', name='age', required)
     br
     label(for='age') Email: 
-    input(type='text', name='email')
+    input(type='text', name='email', required)
     br
     label(for='age') Password: 
-    input(type='text', name='password')
+    input(type='text', name='password', required)
     br
     label(for='Q1') when did halo first release?: 
-    select(name='Q1')
+    select(name='Q1', required)
       option(value="answer1") 2000
       option(value="answer2") 2001
       option(value="answer3") 2002
       option(value="answer4") 2003
     br
     label(for='Q2') Can a match box?: 
-    select(name='Q2')
+    select(name='Q2', required)
       option(value="answer1") No, but a tin can
       option(value="answer2") What?
       option(value="answer3") Maybe
       option(value="answer4") Yes
     br
     label(for='Q3') which word is spelled incorrectly in the dictionary?: 
-    select(name='Q3')
+    select(name='Q3', required)
       option(value="answer1") Spelled
       option(value="answer2") Dictionary
       option(value="answer3") Your
