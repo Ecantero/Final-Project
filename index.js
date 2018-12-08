@@ -4,6 +4,7 @@ var express = require('express'),
   route = require('./routes/routes.js'),
   bodyParser = require('body-parser'),
   mongoose = require("mongoose"),
+  expressSession = require('express-session'),
   cookieParser = require('cookie-parser');
 
 
@@ -44,4 +45,19 @@ app.get('/delete/:id', route.delete);
 
 app.listen(3000, function(){
   console.log("Listening On Port", 3000)
+});
+
+app.post('/',urlencodedParser, function(req, res){
+  console.log(req.body.username);
+  if(req.body.firstName=='Bob' && req.body.lastName=='Whatever' &&req.body.pass=='npm'){
+    req.session.user={
+      isAuthenticated: true,
+      username: req.body.username
+    };
+    res.redirect('/private');
+    res.redirect('/other');
+  }else{
+    res.redirect('/');
+  }
+  
 });
