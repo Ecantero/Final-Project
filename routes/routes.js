@@ -9,10 +9,13 @@ mdb.once('open', function (callback) {
 });
 
 var personSchema = mongoose.Schema({
-  name: String,
+  username: String,
   age: String,
-  species: String,
-  color: String
+  email: String,
+  password: String,
+  Q1: String,
+  Q2: String,
+  Q3: String
 });
 
 
@@ -41,7 +44,10 @@ exports.createPerson = function (req, res) {
     username: req.body.username,
     age: req.body.age,
     email: req.body.email,
-    password: req.body.password
+    password: req.body.password,
+    Q1: req.body.Q1,
+    Q2: req.body.Q2,
+    Q3: req.body.Q3
   });
   person.save(function (err, person) {
     if (err) return console.error(err);

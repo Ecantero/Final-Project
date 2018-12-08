@@ -19,7 +19,7 @@ app.get('/', function (req, res) {
   
 });
 
-app.get('/clear', function (req, res) {
+app.get('/logout', function (req, res) {
   res.clearCookie('beenHereBefore');
   res.redirect('/');
 });
@@ -34,6 +34,7 @@ var urlencodedParser = bodyParser.urlencoded({
 })
 
 app.get('/', route.index);
+app.get('/home', route.home);
 app.get('/create', route.create);
 app.get('/edit/:id', route.edit);
 app.get('/details/:id', route.details);
