@@ -1,11 +1,12 @@
 var express = require('express'),
-  pug = require('pug'),
-  path = require('path'),
-  route = require('./routes/routes.js'),
-  bodyParser = require('body-parser'),
-  mongoose = require("mongoose"),
-  expressSession = require('express-session'),
-  cookieParser = require('cookie-parser');
+pug = require('pug'),
+path = require('path'),
+route = require('./routes/routes.js'),
+bodyParser = require('body-parser'),
+data = require('./data');
+mongoose = require("mongoose"),
+expressSession = require('express-session'),
+cookieParser = require('cookie-parser');
 
 
 var app = express();
@@ -25,6 +26,8 @@ var app = express();
 //   res.redirect('/');
 // });
 
+var allData = data;
+
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 
@@ -35,7 +38,12 @@ var urlencodedParser = bodyParser.urlencoded({
 })
 
 app.get('/', route.index);
-app.get('/home', route.home);
+app.get('/home', function (req, res) {
+  res.render('home', {
+    "title":"Home",
+    "data":allData
+  });
+});
 app.get('/create', route.create);
 app.get('/edit/:id', route.edit);
 app.get('/details/:id', route.details);
@@ -49,13 +57,12 @@ app.listen(3000, function(){
 
 app.post('/',urlencodedParser, function(req, res){
   console.log(req.body.username);
-  if(req.body.firstName=='Bob' && req.body.lastName=='Whatever' &&req.body.pass=='npm'){
+  if(req.body.username==allData.username &&req.body.pass==allData.pass){
     req.session.user={
       isAuthenticated: true,
       username: req.body.username
     };
-    res.redirect('/private');
-    res.redirect('/other');
+    res.redirect('/home');
   }else{
     res.redirect('/');
   }
