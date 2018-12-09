@@ -12,10 +12,11 @@ block content
     input(type='text', name='email', required)
     br
     label(for='age') Password: 
-    input(type='text', name='password', required)
+    input(type='password', name='pass', required)
     br
     label(for='Q1') when did halo first release?: 
     select(name='Q1', required)
+      option(value='') Please Select
       option(value="answer1") 2000
       option(value="answer2") 2001
       option(value="answer3") 2002
@@ -23,6 +24,7 @@ block content
     br
     label(for='Q2') Can a match box?: 
     select(name='Q2', required)
+      option(value='') Please Select
       option(value="answer1") No, but a tin can
       option(value="answer2") What?
       option(value="answer3") Maybe
@@ -30,6 +32,7 @@ block content
     br
     label(for='Q3') which word is spelled incorrectly in the dictionary?: 
     select(name='Q3', required)
+      option(value='') Please Select
       option(value="answer1") Spelled
       option(value="answer2") Dictionary
       option(value="answer3") Your

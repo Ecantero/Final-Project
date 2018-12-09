@@ -3,30 +3,12 @@ pug = require('pug'),
 path = require('path'),
 route = require('./routes/routes.js'),
 bodyParser = require('body-parser'),
-data = require('./data');
-mongoose = require("mongoose"),
+bcrypt = require('bcrypt-nodejs');
 expressSession = require('express-session'),
 cookieParser = require('cookie-parser');
 
-
 var app = express();
-
-// app.get('/', function (req, res) {
-//   if(req.cookies.beenHereBefore === 'yes') {
-//       res.send('You have been here before');
-//   } else {
-//       res.cookie('beenHereBefore', 'yes');
-//       res.send('This is your first time');
-//   }
-  
-// });
-
-// app.get('/clear', function (req, res) {
-//   res.clearCookie('beenHereBefore');
-//   res.redirect('/');
-// });
-
-var allData = data;
+var allData = route;
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
@@ -38,12 +20,6 @@ var urlencodedParser = bodyParser.urlencoded({
 })
 
 app.get('/', route.index);
-app.get('/home', function (req, res) {
-  res.render('home', {
-    "title":"Home",
-    "data":allData
-  });
-});
 app.get('/create', route.create);
 app.get('/edit/:id', route.edit);
 app.get('/details/:id', route.details);
@@ -55,16 +31,3 @@ app.listen(3000, function(){
   console.log("Listening On Port", 3000)
 });
 
-app.post('/',urlencodedParser, function(req, res){
-  console.log(req.body.username);
-  if(req.body.username==allData.username &&req.body.pass==allData.pass){
-    req.session.user={
-      isAuthenticated: true,
-      username: req.body.username
-    };
-    res.redirect('/home');
-  }else{
-    res.redirect('/');
-  }
-  
-});

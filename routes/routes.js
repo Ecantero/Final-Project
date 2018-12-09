@@ -27,15 +27,17 @@ exports.index = function (req, res) {
   Person.find(function (err, person) {
     if (err) return console.error(err);
     res.render('index', {
-      title: 'People List',
+      title: 'Login',
       people: person
     });
   });
 };
 
-// exports.home = function (req, res) {
-//   res.render('home');
-// };
+exports.home = function (req, res) {
+  res.render('home', {
+    title: 'Home Page'
+  });
+};
 
 exports.create = function (req, res) {
   res.render('create', {
@@ -55,7 +57,7 @@ exports.createPerson = function (req, res) {
   });
   person.save(function (err, person) {
     if (err) return console.error(err);
-    console.log(req.body.name + ' added');
+    console.log(req.body.username + ' added');
   });
   res.redirect('/');
 };
@@ -73,10 +75,10 @@ exports.edit = function (req, res) {
 exports.editPerson = function (req, res) {
   Person.findById(req.params.id, function (err, person) {
     if (err) return console.error(err);
-    person.name = req.body.name;
-    person.age = req.body.age;
-    person.species = req.body.species;
-    person.color = req.body.color;
+    Person.username = req.body.username,
+    Person.age = req.body.age,
+    Person.email = req.body.email,
+    Person.password = req.body.password
     person.save(function (err, person) {
       if (err) return console.error(err);
       console.log(req.body.name + ' updated');
@@ -97,7 +99,7 @@ exports.details = function (req, res) {
   Person.findById(req.params.id, function (err, person) {
     if (err) return console.error(err);
     res.render('details', {
-      title: person.name + "'s Details",
+      title: person.username + "'s Details",
       person: person
     });
   });
