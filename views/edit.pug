@@ -2,7 +2,7 @@ extends layout
 
 block content
   form(id='form', method='post', action='/edit/' + person.id)
-    label(for='name') UserName: 
+    label(for='name') Username: 
     input(type='text', name='username' value=person.username)
     br
     label(for='age') Age: 
