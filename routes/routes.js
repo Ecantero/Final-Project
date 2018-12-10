@@ -50,7 +50,7 @@ exports.createPerson = function (req, res) {
     username: req.body.username,
     age: req.body.age,
     email: req.body.email,
-    password: req.body.password,
+    password: req.body.pass,
     Q1: req.body.Q1,
     Q2: req.body.Q2,
     Q3: req.body.Q3
