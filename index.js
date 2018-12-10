@@ -7,6 +7,10 @@ bcrypt = require('bcrypt-nodejs'),
 expressSession = require('express-session'),
 cookieParser = require('cookie-parser');
 
+var mongoose = require('mongoose');
+mongoose.Promise = global.Promise;
+var allData = mongoose.connect('mongodb://localhost/data');
+
 var myHash;
 
 function makeHash(the_str) {
@@ -15,8 +19,15 @@ function makeHash(the_str) {
   });
 }
 
+var checkAuth = function (req, res, next) {
+  if(req.session.user && req.session.user.isAuthenticated){
+    next();
+  }else{
+    res.redirect('/');
+  }
+}
+
 var app = express();
-var allData = route;
 
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
@@ -28,16 +39,24 @@ var urlencodedParser = bodyParser.urlencoded({
 })
 
 app.get('/', route.index);
+
 app.get('/home', route.home);
+
 app.get('/create', route.create);
+
 app.get('/edit/:id', route.edit);
+
 app.get('/details/:id', route.details);
+
 app.post('/create', urlencodedParser, route.createPerson, function(req, res){
   makeHash(req.body.pass);
   console.log(myHash);
 });
+
 app.post('/edit/:id', urlencodedParser, route.editPerson);
+
 app.get('/delete/:id', route.delete);
+
 app.post('/', urlencodedParser, function(req, res){
   console.log(req.body.username);
   if(req.body.username==allData.username &&req.body.pass==allData.pass){
@@ -45,20 +64,15 @@ app.post('/', urlencodedParser, function(req, res){
       isAuthenticated: true,
       username: req.body.username
     };
-    res.redirect('/home');
+    // res.redirect('/home');
+    route.home
   }else{
-    res.redirect('/');
+    // res.redirect('/');
+    route.index
   }
   
 });
 
-function findUser() {
-  
-}
-
-function comp(){
-  
-}
 
 app.listen(3000, function(){
   console.log("Listening On Port", 3000)
