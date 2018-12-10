@@ -1,7 +1,7 @@
 extends layout
 
 block content
-  div#welcome Welcome #{username}
+  div#welcome Welcome 
     p
     a(id='edit' href='/edit') Edit User
     a(id='details' href='/details') Details for User
@@ -17,5 +17,8 @@ block content
   script. 
     var data = [#{data}]
   script(src="/scripts/script.js")
+  p Question 1
   script(src="/scripts/script2.js")
+  p Question 2
   script(src="/scripts/script3.js")
+  p Question 3

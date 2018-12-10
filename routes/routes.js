@@ -24,13 +24,26 @@ var Person = mongoose.model('People_Collection', personSchema);
 exports.index = function (req, res) {
   Person.find(function (err, person) {
     if (err) return console.error(err);
+    // if (req.body.username == Person.find({ 'name': new RegExp(req.body.username) }, function (err, docs) {
+    //   cb(docs);
+    // }) && req.body.pass == Person.find({ 'name': new RegExp(req.body.pass) }, function (err, docs) {
+    //   cb(docs);
+    // })) {
+    //   req.session.user = {
+    //     isAuthenticated: true,
+    //     username: req.body.username
+    //   };
+    //   res.redirect('home');
+    // } else {
+    //   res.redirect('/');
+    // }
     res.render('index', {
       title: 'Login',
       people: person
     });
   });
 };
-var sampleData = [15,92,47,63];
+ var sampleData = [15,92,47,63];
 
 
 exports.home = function (req, res) {
