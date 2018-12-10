@@ -1,4 +1,4 @@
-var myCanvas = document.getElementById("q1"); 
+var myCanvas = document.getElementById("q2"); 
 var ctx = myCanvas.getContext("2d");
 
 function drawLine(ctx, startX, startY, endX, endY,color){
@@ -103,10 +103,11 @@ var Barchart = function(options){
     }
 }
 
+
 var myBarchart = new Barchart(
     {
         canvas:myCanvas,
-        seriesName:"Question 1 Data",
+        seriesName:"Question 2 Data",
         padding:10,
         gridScale:5,
         gridColor:"#eeeeee",
@@ -115,4 +116,3 @@ var myBarchart = new Barchart(
     }
 );
 myBarchart.draw();
-

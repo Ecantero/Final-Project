@@ -1,0 +1,109 @@
+body{
+    text-align: center;
+    background-image: url(/images/bigchungus.jpeg); 
+    background-size: 90% 750px;
+    background-attachment:fixed;
+    background-repeat: no-repeat;
+    background-position: top center;
+    margin: 15%;
+    padding: 0;
+}
+
+h3{
+    background: white;
+    opacity: 0.7;
+    margin: 10px;
+    border: black solid;
+}
+
+#title{
+    font-size: 50px; 
+    border: black solid;
+}
+
+#nameentry{
+    font-size: 40px;
+    text-decoration: underline;
+    margin: 0px;
+
+}
+
+#form{
+    text-decoration: none;
+    font-size: 20px;
+}
+
+#butt{
+    margin: 10px;
+}
+
+#menu{
+    margin: 10px;
+    background: white;
+    opacity: 0.7;
+    border: black solid;
+}
+
+a{
+    color: black;
+}
+
+#form2{
+    font-size: 20px;
+    background: white;
+    opacity: 0.7;
+    margin: 10px;
+    border: black solid;
+}
+
+#questions{
+    font-size: 20px;
+    background: white;
+    opacity: 0.7;
+    margin: 10px;
+    border: black solid;
+}
+canvas{
+    /* font-size: 20px; */
+    background: white;
+    opacity: 0.7;
+    margin: 10px;
+    border: black solid;
+}
+#q1{
+    opacity: 1;
+}
+
+#q2{
+    opacity: 1;
+}
+
+#q3{
+    opacity: 1;
+}
+
+#welcome{
+    background: white;
+    font-size: 40px;
+    opacity: 0.7;
+    margin: 10px;
+    border: black solid;
+}
+
+#edit{
+    /* float: left; */
+    border: black solid;
+    text-decoration: none;
+    margin: 5px;
+    /* background: white; */
+
+}
+
+#details{
+    /* float: left; */
+    border: black solid;
+    margin: 5px;
+    text-decoration: none;
+    /* background: white; */
+
+}

@@ -1,8 +1,8 @@
 extends layout
 
 block content
-  form(id='form', method='post', action='/create')
-    label(for='name') UserName: 
+  form(id='form2', method='post', action='/create')
+    label(for='name') Username: 
     input(type='text', name='username', required)
     br
     label(for='age') Age: 
@@ -14,7 +14,7 @@ block content
     label(for='age') Password: 
     input(type='password', name='pass', required)
     br
-    label(for='Q1') when did halo first release?: 
+    label(for='Q1') When did Halo first release?: 
     select(name='Q1', required)
       option(value='') Please Select
       option(value="answer1") 2000
@@ -30,7 +30,7 @@ block content
       option(value="answer3") Maybe
       option(value="answer4") Yes
     br
-    label(for='Q3') which word is spelled incorrectly in the dictionary?: 
+    label(for='Q3') Which word is spelled incorrectly in the dictionary?: 
     select(name='Q3', required)
       option(value='') Please Select
       option(value="answer1") Spelled

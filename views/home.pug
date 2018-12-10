@@ -1,11 +1,21 @@
 extends layout
 
 block content
-  p Welcome #{username}
-  script(src="script.js")
-  p
-  #menu
-    a(href='/edit') Edit User
-  p
-  #menu
-    a(href='/details') Details for User
+  div#welcome Welcome #{username}
+    p
+    a(id='edit' href='/edit') Edit User
+    a(id='details' href='/details') Details for User
+  //- p
+  //- #menu
+  //- p
+  //- #menu
+  p#questions Question Results
+  canvas(id='q1' width='550' height='500')
+  canvas(id='q2' width='550' height='500')
+  canvas(id='q3' width='550' height='500')
+  div#legend 
+  script. 
+    var data = [#{data}]
+  script(src="/scripts/script.js")
+  script(src="/scripts/script2.js")
+  script(src="/scripts/script3.js")
