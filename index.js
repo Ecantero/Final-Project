@@ -4,14 +4,18 @@ path = require('path'),
 route = require('./routes/routes.js'),
 bodyParser = require('body-parser'),
 bcrypt = require('bcrypt-nodejs'),
-expressSession = require('express-session'),
-cookieParser = require('cookie-parser');
+cookieParser = require('cookie-parser'),
+expressSession = require('express-session');
+
+var app = express();
 
 var mongoose = require('mongoose');
 mongoose.Promise = global.Promise;
 var allData = mongoose.connect('mongodb://localhost/data');
 
 var myHash;
+
+// app.use(cookieParser('This is my passphrase'));
 
 function makeHash(the_str) {
   bcrypt.hash(the_str, null, null, function(err, hash){
@@ -27,8 +31,6 @@ var checkAuth = function (req, res, next) {
   }
 }
 
-var app = express();
-
 app.set('view engine', 'pug');
 app.set('views', __dirname + '/views');
 
@@ -38,36 +40,50 @@ var urlencodedParser = bodyParser.urlencoded({
   extended: true
 })
 
-app.get('/', route.index);
+app.get('/', route.index, function (req, res) {
+  if(req.cookies.beenHereBefore === 'yes') {
+    res.send('You have been here before');
+  } else {
+    res.cookie('beenHereBefore', 'yes');
+    res.send('This is your first time');
+  }
 
-app.get('/home', route.home);
+});
+
+app.get('/home', checkAuth, route.home);
 
 app.get('/create', route.create);
 
-app.get('/edit/:id', route.edit);
+app.get('/edit/:id', checkAuth, route.edit);
 
-app.get('/details/:id', route.details);
+app.get('/details/:id', checkAuth, route.details);
 
 app.post('/create', urlencodedParser, route.createPerson, function(req, res){
   makeHash(req.body.pass);
   console.log(myHash);
 });
 
-app.post('/edit/:id', urlencodedParser, route.editPerson);
+app.post('/edit/:id', urlencodedParser, route.editPerson, function(req, res){
+  makeHash(req.body.pass);
+  console.log(myHash);
+});
 
-app.get('/delete/:id', route.delete);
+app.get('/delete/:id', checkAuth, route.delete);
+
+app.get('/clear', function (req, res) {
+  res.clearCookie('beenHereBefore');
+  res.redirect('/');
+});
 
 app.post('/', urlencodedParser, function(req, res){
   console.log(req.body.username);
-  if(req.body.username==allData.username &&req.body.pass==allData.pass){
+  if(req.body.username==allData.users.find({name: req.body.username}) &&req.body.pass==allData.users.find({name: req.body.pass})){
     req.session.user={
       isAuthenticated: true,
       username: req.body.username
     };
-    // res.redirect('/home');
-    route.home
+    route.home;
   }else{
-    // res.redirect('/');
     route.index
   }
   
